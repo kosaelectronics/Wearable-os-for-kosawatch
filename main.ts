@@ -123,3 +123,66 @@ basic.forever(function () {
         }
     }
 })
+basic.forever(function () {
+    let apps_ = 0
+    if (apps_ == 1) {
+        basic.showLeds(`
+            # . # # #
+            # . . . #
+            # . . . #
+            # . . . #
+            # # # . #
+            `)
+    } else if (apps_ == 2) {
+        basic.showLeds(`
+            # . # . #
+            # . # . #
+            # . # . #
+            # . . . #
+            # # # # #
+            `)
+    } else if (apps_ == 3) {
+        basic.showLeds(`
+            # # . . .
+            # # . . .
+            # # # . .
+            # # # # .
+            # # # # #
+            `)
+    } else if (apps_ == 4) {
+        basic.showLeds(`
+            . # # # .
+            . # # # .
+            . # # # .
+            . . # . .
+            # # # # #
+            `)
+    } else if (apps_ == 5) {
+        basic.showLeds(`
+            . . . . .
+            # # . . .
+            . # # # #
+            . . # # #
+            . . # . #
+            `)
+    } else if (apps_ == 6) {
+        for (let index = 0; index < 4; index++) {
+            basic.showLeds(`
+                . # . # .
+                # # # # #
+                # # # # #
+                . # # # .
+                . . # . .
+                `)
+            basic.showLeds(`
+                . . . . .
+                . # . # .
+                # # # # #
+                . # # # .
+                . . # . .
+                `)
+        }
+    } else if (false) {
+    	
+    }
+})

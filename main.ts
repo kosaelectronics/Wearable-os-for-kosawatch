@@ -29,7 +29,7 @@ input.onButtonPressed(Button.A, function () {
         100
         )
     } else if (poj_pak == 3) {
-    	
+        apps_ += -1
     } else if (poj_pak == 4) {
     	
     }
@@ -82,12 +82,13 @@ input.onButtonPressed(Button.B, function () {
         let kcal_ = 0
         basic.showString("" + input.temperature() + "C" + "|" + ("Steps:" + steps_) + "|" + ("Kcal:" + kcal_) + "|")
     } else if (poj_pak == 3) {
-    	
+        apps_ += 1
     } else if (false) {
     	
     }
 })
 let steps_ = 0
+let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
 let MINUTE = 0
@@ -97,34 +98,6 @@ let poj_pak = 0
 poj_pak = 0
 start_everything = 0
 basic.forever(function () {
-	
-})
-// Hodiny
-basic.forever(function () {
-    if (start_everything == 1) {
-        if (!(HOUR1 == 24 || MINUTE1 == 60)) {
-            basic.pause(60000)
-            MINUTE1 += 1
-        } else if (MINUTE1 == 60) {
-            MINUTE1 = 0
-            HOUR1 += 1
-        } else if (HOUR1 == 24) {
-            HOUR1 = 0
-        }
-    }
-})
-basic.forever(function () {
-    led.setBrightness(input.lightLevel())
-})
-basic.forever(function () {
-    if (start_everything == 1) {
-        if (input.isGesture(Gesture.Shake)) {
-            steps_ += 1
-        }
-    }
-})
-basic.forever(function () {
-    let apps_ = 0
     if (apps_ == 1) {
         basic.showLeds(`
             # . # # #
@@ -134,13 +107,36 @@ basic.forever(function () {
             # # # . #
             `)
     } else if (apps_ == 2) {
-        basic.showLeds(`
-            # . # . #
-            # . # . #
-            # . # . #
-            # . . . #
-            # # # # #
-            `)
+        for (let index = 0; index < 5; index++) {
+            basic.showLeds(`
+                # . . # #
+                . # . . #
+                . . # . #
+                # . . . #
+                # # # # #
+                `)
+            basic.showLeds(`
+                # . # . #
+                # . # . #
+                # . # . #
+                # . . . #
+                # # # # #
+                `)
+            basic.showLeds(`
+                # # # . #
+                # . . # .
+                # . # . .
+                # . . . #
+                # # # # #
+                `)
+            basic.showLeds(`
+                # . # . #
+                # . # . #
+                # . # . #
+                # . . . #
+                # # # # #
+                `)
+        }
     } else if (apps_ == 3) {
         basic.showLeds(`
             # # . . .
@@ -182,7 +178,40 @@ basic.forever(function () {
                 . . # . .
                 `)
         }
-    } else if (false) {
-    	
+    } else if (apps_ == 0) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            `)
+    }
+})
+basic.forever(function () {
+	
+})
+// Hodiny
+basic.forever(function () {
+    if (start_everything == 1) {
+        if (!(HOUR1 == 24 || MINUTE1 == 60)) {
+            basic.pause(60000)
+            MINUTE1 += 1
+        } else if (MINUTE1 == 60) {
+            MINUTE1 = 0
+            HOUR1 += 1
+        } else if (HOUR1 == 24) {
+            HOUR1 = 0
+        }
+    }
+})
+basic.forever(function () {
+    led.setBrightness(input.lightLevel())
+})
+basic.forever(function () {
+    if (start_everything == 1) {
+        if (input.isGesture(Gesture.Shake)) {
+            steps_ += 1
+        }
     }
 })

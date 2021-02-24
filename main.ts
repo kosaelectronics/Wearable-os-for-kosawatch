@@ -80,7 +80,23 @@ input.onButtonPressed(Button.B, function () {
         }
     } else if (poj_pak == 2) {
         let kcal_ = 0
-        basic.showString("" + input.temperature() + "C" + "|" + ("Steps:" + steps_) + "|" + ("Kcal:" + kcal_) + "|")
+        basic.showString("" + input.temperature() + "C" + "|")
+        basic.showLeds(`
+            # # . . .
+            # # . . .
+            # # # . .
+            # # # # .
+            # # # # #
+            `)
+        basic.showString("" + steps_ + "|")
+        basic.showLeds(`
+            . # . . #
+            . # . # .
+            . # # . .
+            . # . # .
+            . # . . #
+            `)
+        basic.showString("" + kcal_ + "|")
     } else if (poj_pak == 3) {
         apps_ += 1
     } else if (false) {
@@ -97,96 +113,9 @@ let start_everything = 0
 let poj_pak = 0
 poj_pak = 0
 start_everything = 0
+let app_s = ["SPOJENÍ", "KOMPAS", "KROKY", "HLUK", "APP OBCHOD", "ZDRAVÍ"]
 basic.forever(function () {
-    if (apps_ == 1) {
-        basic.showLeds(`
-            # . # # #
-            # . . . #
-            # . . . #
-            # . . . #
-            # # # . #
-            `)
-    } else if (apps_ == 2) {
-        for (let index = 0; index < 5; index++) {
-            basic.showLeds(`
-                # . . # #
-                . # . . #
-                . . # . #
-                # . . . #
-                # # # # #
-                `)
-            basic.showLeds(`
-                # . # . #
-                # . # . #
-                # . # . #
-                # . . . #
-                # # # # #
-                `)
-            basic.showLeds(`
-                # # # . #
-                # . . # .
-                # . # . .
-                # . . . #
-                # # # # #
-                `)
-            basic.showLeds(`
-                # . # . #
-                # . # . #
-                # . # . #
-                # . . . #
-                # # # # #
-                `)
-        }
-    } else if (apps_ == 3) {
-        basic.showLeds(`
-            # # . . .
-            # # . . .
-            # # # . .
-            # # # # .
-            # # # # #
-            `)
-    } else if (apps_ == 4) {
-        basic.showLeds(`
-            . # # # .
-            . # # # .
-            . # # # .
-            . . # . .
-            # # # # #
-            `)
-    } else if (apps_ == 5) {
-        basic.showLeds(`
-            . . . . .
-            # # . . .
-            . # # # #
-            . . # # #
-            . . # . #
-            `)
-    } else if (apps_ == 6) {
-        for (let index = 0; index < 4; index++) {
-            basic.showLeds(`
-                . # . # .
-                # # # # #
-                # # # # #
-                . # # # .
-                . . # . .
-                `)
-            basic.showLeds(`
-                . . . . .
-                . # . # .
-                # # # # #
-                . # # # .
-                . . # . .
-                `)
-        }
-    } else if (apps_ == 0) {
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
-    }
+	
 })
 basic.forever(function () {
 	
@@ -206,12 +135,12 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    led.setBrightness(input.lightLevel())
-})
-basic.forever(function () {
     if (start_everything == 1) {
         if (input.isGesture(Gesture.Shake)) {
             steps_ += 1
         }
     }
+})
+basic.forever(function () {
+    led.setBrightness(input.lightLevel())
 })

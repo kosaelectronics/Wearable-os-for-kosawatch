@@ -2,24 +2,54 @@ input.onButtonPressed(Button.A, function () {
     if (poj_pak == 0) {
         if (!(HOUR == 24 || HOUR == -1)) {
             HOUR += -1
-            basic.showNumber(HOUR)
+            ScrolText.showNumber(
+            HOUR,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            90
+            )
         } else if (HOUR == 24) {
             HOUR = 0
-            basic.showNumber(HOUR)
+            ScrolText.showNumber(
+            HOUR,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            90
+            )
         } else if (HOUR == -1) {
             HOUR = 23
-            basic.showNumber(HOUR)
+            ScrolText.showNumber(
+            HOUR,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            90
+            )
         }
     } else if (poj_pak == 1) {
         if (!(MINUTE == 60 || MINUTE == -1)) {
             MINUTE += -1
-            basic.showNumber(MINUTE)
+            ScrolText.showNumber(
+            MINUTE,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
         } else if (MINUTE == 60) {
             MINUTE = 0
-            basic.showNumber(MINUTE)
+            ScrolText.showNumber(
+            MINUTE,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
         } else if (MINUTE == -1) {
             MINUTE = 59
-            basic.showNumber(MINUTE)
+            ScrolText.showNumber(
+            MINUTE,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
         }
     } else if (poj_pak == 2) {
         ScrolText.showString(
@@ -52,31 +82,95 @@ input.onButtonPressed(Button.AB, function () {
     } else if (poj_pak == 2) {
         poj_pak = 3
     } else if (poj_pak == 3) {
-    	
+        if (apps_ == 1) {
+            bluetooth.uartWriteLine("app.sync.start")
+        } else if (apps_ == 2) {
+        	
+        } else if (apps_ == 3) {
+            basic.showNumber(steps_)
+            basic.showLeds(`
+                # # . . .
+                # # . . .
+                # # # . .
+                # # # # .
+                # # # # #
+                `)
+        } else if (apps_ == 4) {
+            basic.showNumber(input.soundLevel())
+            if (input.soundLevel() > 128) {
+                basic.showString("Loud")
+            } else if (input.soundLevel() < 128) {
+                basic.showString("Quiet")
+            } else if (input.soundLevel() == 128) {
+                basic.showString("Loud")
+            }
+        } else if (apps_ == 5) {
+            images.createBigImage(`
+                . # # # . . . # . .
+                . # # # . . # . . .
+                . # # # . # # # # #
+                . # # # . . # . . .
+                . # # # . . . # . .
+                `).scrollImage(1, 200)
+        } else if (apps_ == 6) {
+        	
+        } else if (apps_ == 0) {
+            poj_pak = 2
+        }
     }
 })
 input.onButtonPressed(Button.B, function () {
     if (poj_pak == 0) {
         if (!(HOUR == 24 || HOUR == -1)) {
             HOUR += 1
-            basic.showNumber(HOUR)
+            ScrolText.showNumber(
+            HOUR,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            90
+            )
         } else if (HOUR == 24) {
             HOUR = 0
-            basic.showNumber(HOUR)
+            ScrolText.showNumber(
+            HOUR,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            90
+            )
         } else if (HOUR == -1) {
             HOUR = 23
-            basic.showNumber(HOUR)
+            ScrolText.showNumber(
+            HOUR,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            90
+            )
         }
     } else if (poj_pak == 1) {
         if (!(MINUTE == 60 || MINUTE == -1)) {
             MINUTE += 1
-            basic.showNumber(MINUTE)
+            ScrolText.showNumber(
+            MINUTE,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
         } else if (MINUTE == 60) {
             MINUTE = 0
-            basic.showNumber(MINUTE)
+            ScrolText.showNumber(
+            MINUTE,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
         } else if (MINUTE == -1) {
             MINUTE = 59
-            basic.showNumber(MINUTE)
+            ScrolText.showNumber(
+            MINUTE,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
         }
     } else if (poj_pak == 2) {
         let kcal_ = 0
@@ -103,22 +197,83 @@ input.onButtonPressed(Button.B, function () {
     	
     }
 })
-let steps_ = 0
 let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
 let MINUTE = 0
 let HOUR = 0
+let steps_ = 0
 let start_everything = 0
 let poj_pak = 0
+bluetooth.startUartService()
 poj_pak = 0
 start_everything = 0
-let app_s = ["SPOJENÍ", "KOMPAS", "KROKY", "HLUK", "APP OBCHOD", "ZDRAVÍ"]
+steps_ = 0
 basic.forever(function () {
-	
+    if (start_everything == 1) {
+        if (input.isGesture(Gesture.Shake)) {
+            steps_ += 1
+        }
+    }
 })
 basic.forever(function () {
-	
+    if (apps_ == 1) {
+        basic.showLeds(`
+            # . # # #
+            # . . . #
+            # . . . #
+            # . . . #
+            # # # . #
+            `)
+    } else if (apps_ == 2) {
+        basic.showLeds(`
+            # . # . #
+            # . # . #
+            # . # . #
+            # . . . #
+            # # # # #
+            `)
+    } else if (apps_ == 3) {
+        basic.showLeds(`
+            # # . . .
+            # # . . .
+            # # # . .
+            # # # # .
+            # # # # #
+            `)
+    } else if (apps_ == 4) {
+        basic.showLeds(`
+            . # # # .
+            . # # # .
+            . # # # .
+            . . # . .
+            # # # # #
+            `)
+    } else if (apps_ == 5) {
+        basic.showLeds(`
+            . . . . .
+            # # . . .
+            . # # # #
+            . . # # #
+            . . # . #
+            `)
+    } else if (apps_ == 6) {
+        basic.showLeds(`
+            . # . # .
+            # # # # #
+            # # # # #
+            . # # # .
+            . . # . .
+            `)
+    } else if (apps_ == 0 && poj_pak == 3) {
+        basic.showLeds(`
+            . . # . .
+            . # . . .
+            # # # # #
+            . # . . .
+            . . # . .
+            `)
+    }
 })
 // Hodiny
 basic.forever(function () {
@@ -135,12 +290,8 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (start_everything == 1) {
-        if (input.isGesture(Gesture.Shake)) {
-            steps_ += 1
-        }
-    }
+    led.setBrightness(input.lightLevel())
 })
 basic.forever(function () {
-    led.setBrightness(input.lightLevel())
+	
 })

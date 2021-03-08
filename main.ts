@@ -85,7 +85,12 @@ input.onButtonPressed(Button.AB, function () {
         if (apps_ == 1) {
             bluetooth.uartWriteLine("app.sync.start")
         } else if (apps_ == 2) {
-        	
+            if (compass_ == 0) {
+                input.calibrateCompass()
+                compass_ = 1
+            } else if (compass_ == 1) {
+            	
+            }
         } else if (apps_ == 3) {
             basic.showNumber(steps_)
             basic.showLeds(`
@@ -225,6 +230,7 @@ let trace2: Image = null
 let trace1: Image = null
 let hearthbeat = false
 let hearthbeatnumber = 0
+let compass_ = 0
 let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
@@ -241,6 +247,13 @@ start_everything = 0
 steps_ = 0
 start_heartbeat = 0
 beatbeat = 0
+basic.forever(function () {
+    if (hearthbeat) {
+        hearthbeat = false
+        trace1.scrollImage(1, 200)
+        trace2.scrollImage(1, 200)
+    }
+})
 basic.forever(function () {
     if (start_everything == 1) {
         if (!(HOUR1 == 24 || MINUTE1 == 60)) {
@@ -322,10 +335,72 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (hearthbeat) {
-        hearthbeat = false
-        trace1.scrollImage(1, 200)
-        trace2.scrollImage(1, 200)
+    if (compass_ == 1) {
+        if (input.compassHeading() >= 23 && input.compassHeading() < 68) {
+            basic.showLeds(`
+                . . # # #
+                . . . . #
+                . . # . #
+                . # . . .
+                # . . . .
+                `)
+        } else if (input.compassHeading() < 113) {
+            basic.showLeds(`
+                . . # . .
+                . . . # .
+                # # # . #
+                . . . # .
+                . . # . .
+                `)
+        } else if (input.compassHeading() < 158) {
+            basic.showLeds(`
+                # . . . .
+                . # . . .
+                . . # . #
+                . . . . #
+                . . # # #
+                `)
+        } else if (input.compassHeading() < 203) {
+            basic.showLeds(`
+                . . # . .
+                . . # . .
+                # . # . #
+                . # . # .
+                . . # . .
+                `)
+        } else if (input.compassHeading() < 248) {
+            basic.showLeds(`
+                . . . . #
+                . . . # .
+                # . # . .
+                # . . . .
+                # # # . .
+                `)
+        } else if (input.compassHeading() < 293) {
+            basic.showLeds(`
+                . . # . .
+                . # . . .
+                # . # # #
+                . # . . .
+                . . # . .
+                `)
+        } else if (input.compassHeading() < 338) {
+            basic.showLeds(`
+                # # # . .
+                # . . . .
+                # . # . .
+                . . . # .
+                . . . . #
+                `)
+        } else {
+            basic.showLeds(`
+                . . # . .
+                . # . # .
+                # . # . #
+                . . # . .
+                . . # . .
+                `)
+        }
     }
 })
 basic.forever(function () {

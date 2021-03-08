@@ -113,7 +113,9 @@ input.onButtonPressed(Button.AB, function () {
                 . # # # . . . # . .
                 `).scrollImage(1, 200)
         } else if (apps_ == 6) {
-        	
+            start_heartbeat = 1
+            basic.pause(60000)
+            start_heartbeat = 0
         } else if (apps_ == 0) {
             poj_pak = 2
         }
@@ -195,20 +197,31 @@ input.onButtonPressed(Button.B, function () {
         apps_ += 1
     } else if (false) {
     	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
     }
 })
 input.onGesture(Gesture.Shake, function () {
     if (start_everything == 1) {
         steps_ += 1
+        if (start_heartbeat == 1) {
+            hearthbeat = true
+        }
     }
 })
 let trace2: Image = null
 let trace1: Image = null
+let hearthbeat = false
 let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
 let MINUTE = 0
 let HOUR = 0
+let start_heartbeat = 0
 let steps_ = 0
 let start_everything = 0
 let poj_pak = 0
@@ -216,6 +229,7 @@ bluetooth.startUartService()
 poj_pak = 0
 start_everything = 0
 steps_ = 0
+start_heartbeat = 0
 basic.forever(function () {
     if (apps_ == 1) {
         basic.showLeds(`
@@ -300,6 +314,13 @@ basic.forever(function () {
     led.setBrightness(input.lightLevel())
 })
 basic.forever(function () {
+    if (hearthbeat) {
+        hearthbeat = false
+        trace1.scrollImage(1, 200)
+        trace2.scrollImage(1, 200)
+    }
+})
+basic.forever(function () {
     trace1 = images.createImage(`
         # . . . .
         # . . . .
@@ -316,12 +337,5 @@ basic.forever(function () {
         `)
 })
 basic.forever(function () {
-    if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
-        ScrolText.showString(
-        "" + HOUR1 + ":" + MINUTE1,
-        SCROLL_DIR.UP,
-        SCROLL_ROTATE.SR_0,
-        100
-        )
-    }
+	
 })

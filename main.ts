@@ -1,3 +1,4 @@
+// A button actions
 input.onButtonPressed(Button.A, function () {
     if (poj_pak == 0) {
         if (!(HOUR == 24 || HOUR == -1)) {
@@ -64,6 +65,7 @@ input.onButtonPressed(Button.A, function () {
     	
     }
 })
+// A+B buttons actions
 input.onButtonPressed(Button.AB, function () {
     if (poj_pak == 0) {
         HOUR1 = HOUR
@@ -119,6 +121,7 @@ input.onButtonPressed(Button.AB, function () {
         }
     }
 })
+// B button actions
 input.onButtonPressed(Button.B, function () {
     if (poj_pak == 0) {
         if (!(HOUR == 24 || HOUR == -1)) {
@@ -197,11 +200,13 @@ input.onButtonPressed(Button.B, function () {
     	
     }
 })
+// Fixed steps counter
 input.onGesture(Gesture.Shake, function () {
     if (start_everything == 1) {
         steps_ += 1
     }
 })
+// Starting sequence
 let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
@@ -214,6 +219,7 @@ bluetooth.startUartService()
 poj_pak = 0
 start_everything = 0
 steps_ = 0
+// App icons
 basic.forever(function () {
     if (apps_ == 1) {
         basic.showLeds(`
@@ -273,7 +279,7 @@ basic.forever(function () {
             `)
     }
 })
-// Hodiny
+// Clock
 basic.forever(function () {
     if (start_everything == 1) {
         if (!(HOUR1 == 24 || MINUTE1 == 60)) {
@@ -287,6 +293,7 @@ basic.forever(function () {
         }
     }
 })
+// brightness 
 basic.forever(function () {
     led.setBrightness(input.lightLevel())
 })

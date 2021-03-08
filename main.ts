@@ -116,6 +116,11 @@ input.onButtonPressed(Button.AB, function () {
             beatbeat = 1
             start_heartbeat = 1
             basic.pause(60000)
+            basic.showNumber(hearthbeatnumber)
+            for (let index = 0; index < 4; index++) {
+                basic.showIcon(IconNames.SmallHeart)
+                basic.showIcon(IconNames.Heart)
+            }
             start_heartbeat = 0
             beatbeat = 0
         } else if (apps_ == 0) {
@@ -212,12 +217,14 @@ input.onGesture(Gesture.Shake, function () {
         steps_ += 1
         if (start_heartbeat == 1) {
             hearthbeat = true
+            hearthbeatnumber += 1
         }
     }
 })
 let trace2: Image = null
 let trace1: Image = null
 let hearthbeat = false
+let hearthbeatnumber = 0
 let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
@@ -234,6 +241,19 @@ start_everything = 0
 steps_ = 0
 start_heartbeat = 0
 beatbeat = 0
+basic.forever(function () {
+    if (start_everything == 1) {
+        if (!(HOUR1 == 24 || MINUTE1 == 60)) {
+            basic.pause(60000)
+            MINUTE1 += 1
+        } else if (MINUTE1 == 60) {
+            MINUTE1 = 0
+            HOUR1 += 1
+        } else if (HOUR1 == 24) {
+            HOUR1 = 0
+        }
+    }
+})
 basic.forever(function () {
     if (apps_ == 1) {
         basic.showLeds(`
@@ -302,26 +322,28 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (start_everything == 1) {
-        if (!(HOUR1 == 24 || MINUTE1 == 60)) {
-            basic.pause(60000)
-            MINUTE1 += 1
-        } else if (MINUTE1 == 60) {
-            MINUTE1 = 0
-            HOUR1 += 1
-        } else if (HOUR1 == 24) {
-            HOUR1 = 0
-        }
+    if (hearthbeat) {
+        hearthbeat = false
+        trace1.scrollImage(1, 200)
+        trace2.scrollImage(1, 200)
     }
 })
 basic.forever(function () {
     led.setBrightness(input.lightLevel())
 })
 basic.forever(function () {
-    if (hearthbeat) {
-        hearthbeat = false
-        trace1.scrollImage(1, 200)
-        trace2.scrollImage(1, 200)
+    let lift_to_wake = 0
+    if (lift_to_wake == 1) {
+        if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
+            ScrolText.showString(
+            "" + HOUR1 + ":" + MINUTE1,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
+        }
+    } else {
+    	
     }
 })
 basic.forever(function () {
@@ -339,19 +361,4 @@ basic.forever(function () {
         . . . . .
         # # # # #
         `)
-})
-basic.forever(function () {
-    let lift_to_wake = 0
-    if (lift_to_wake == 1) {
-        if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
-            ScrolText.showString(
-            "" + HOUR1 + ":" + MINUTE1,
-            SCROLL_DIR.UP,
-            SCROLL_ROTATE.SR_0,
-            100
-            )
-        }
-    } else {
-    	
-    }
 })

@@ -113,9 +113,11 @@ input.onButtonPressed(Button.AB, function () {
                 . # # # . . . # . .
                 `).scrollImage(1, 200)
         } else if (apps_ == 6) {
+            beatbeat = 1
             start_heartbeat = 1
             basic.pause(60000)
             start_heartbeat = 0
+            beatbeat = 0
         } else if (apps_ == 0) {
             poj_pak = 2
         }
@@ -221,6 +223,7 @@ let MINUTE1 = 0
 let HOUR1 = 0
 let MINUTE = 0
 let HOUR = 0
+let beatbeat = 0
 let start_heartbeat = 0
 let steps_ = 0
 let start_everything = 0
@@ -230,6 +233,7 @@ poj_pak = 0
 start_everything = 0
 steps_ = 0
 start_heartbeat = 0
+beatbeat = 0
 basic.forever(function () {
     if (apps_ == 1) {
         basic.showLeds(`
@@ -271,7 +275,7 @@ basic.forever(function () {
             . . # # #
             . . # . #
             `)
-    } else if (apps_ == 6) {
+    } else if (apps_ == 6 && beatbeat == 0) {
         basic.showLeds(`
             . # . # .
             # # # # #
@@ -337,5 +341,17 @@ basic.forever(function () {
         `)
 })
 basic.forever(function () {
-	
+    let lift_to_wake = 0
+    if (lift_to_wake == 1) {
+        if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
+            ScrolText.showString(
+            "" + HOUR1 + ":" + MINUTE1,
+            SCROLL_DIR.UP,
+            SCROLL_ROTATE.SR_0,
+            100
+            )
+        }
+    } else {
+    	
+    }
 })

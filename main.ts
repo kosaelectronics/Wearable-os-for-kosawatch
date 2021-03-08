@@ -197,6 +197,11 @@ input.onButtonPressed(Button.B, function () {
     	
     }
 })
+input.onGesture(Gesture.Shake, function () {
+    if (start_everything == 1) {
+        steps_ += 1
+    }
+})
 let apps_ = 0
 let MINUTE1 = 0
 let HOUR1 = 0
@@ -209,13 +214,6 @@ bluetooth.startUartService()
 poj_pak = 0
 start_everything = 0
 steps_ = 0
-basic.forever(function () {
-    if (start_everything == 1) {
-        if (input.isGesture(Gesture.Shake)) {
-            steps_ += 1
-        }
-    }
-})
 basic.forever(function () {
     if (apps_ == 1) {
         basic.showLeds(`
@@ -294,4 +292,15 @@ basic.forever(function () {
 })
 basic.forever(function () {
 	
+})
+// Lift to wake
+basic.forever(function () {
+    if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
+        ScrolText.showString(
+        "" + HOUR1 + ":" + MINUTE1,
+        SCROLL_DIR.UP,
+        SCROLL_ROTATE.SR_0,
+        100
+        )
+    }
 })

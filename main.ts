@@ -83,15 +83,16 @@ input.onButtonPressed(Button.AB, function () {
         poj_pak = 3
     } else if (poj_pak == 3) {
         if (apps_ == 1) {
-            bluetooth.uartWriteLine("app.sync.start")
+            bluetooth.uartWriteLine("app.sync.start;")
         } else if (apps_ == 2) {
             if (compass_ == 0) {
                 input.calibrateCompass()
                 compass_ = 1
             } else if (compass_ == 1) {
-            	
+                compass_ = 2
             }
         } else if (apps_ == 3) {
+            bluetooth.uartWriteValue("steps_", steps_)
             basic.showNumber(steps_)
             basic.showLeds(`
                 # # . . .
@@ -110,6 +111,7 @@ input.onButtonPressed(Button.AB, function () {
                 basic.showString("Loud")
             }
         } else if (apps_ == 5) {
+            bluetooth.uartWriteString("app.store.open;")
             images.createBigImage(`
                 . # # # . . . # . .
                 . # # # . . # . . .
@@ -122,6 +124,7 @@ input.onButtonPressed(Button.AB, function () {
             start_heartbeat = 1
             basic.pause(60000)
             basic.showNumber(hearthbeatnumber)
+            bluetooth.uartWriteValue("hearthbeat", hearthbeatnumber)
             for (let index = 0; index < 4; index++) {
                 basic.showIcon(IconNames.SmallHeart)
                 basic.showIcon(IconNames.Heart)
@@ -130,6 +133,13 @@ input.onButtonPressed(Button.AB, function () {
             beatbeat = 0
         } else if (apps_ == 0) {
             poj_pak = 2
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
         }
     }
 })
@@ -226,6 +236,23 @@ input.onGesture(Gesture.Shake, function () {
         }
     }
 })
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    if (compass_ == 2) {
+        compass_ = 1
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    }
+})
 let trace2: Image = null
 let trace1: Image = null
 let hearthbeat = false
@@ -247,6 +274,17 @@ start_everything = 0
 steps_ = 0
 start_heartbeat = 0
 beatbeat = 0
+basic.forever(function () {
+    if (compass_ == 1 && apps_ == 2) {
+        basic.showLeds(`
+            # . # . #
+            # . # . #
+            # . # . #
+            # . . . #
+            # # # # #
+            `)
+    }
+})
 basic.forever(function () {
     if (hearthbeat) {
         hearthbeat = false
@@ -276,7 +314,7 @@ basic.forever(function () {
             # . . . #
             # # # . #
             `)
-    } else if (apps_ == 2) {
+    } else if (apps_ == 2 && (compass_ == 0 || compass_ == 1)) {
         basic.showLeds(`
             # . # . #
             # . # . #
@@ -335,7 +373,7 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (compass_ == 1) {
+    if (compass_ == 2) {
         if (input.compassHeading() >= 23 && input.compassHeading() < 68) {
             basic.showLeds(`
                 . . # # #
@@ -401,14 +439,16 @@ basic.forever(function () {
                 . . # . .
                 `)
         }
+    } else if (compass_ == 1) {
+    	
     }
 })
 basic.forever(function () {
     led.setBrightness(input.lightLevel())
 })
 basic.forever(function () {
-    let lift_to_wake = 0
-    if (lift_to_wake == 1) {
+    let lift_to_wake_ = 0
+    if (lift_to_wake_ == 1) {
         if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
             ScrolText.showString(
             "" + HOUR1 + ":" + MINUTE1,

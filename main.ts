@@ -1,76 +1,76 @@
 input.onButtonPressed(Button.A, function () {
-    if (poj_pak == 0) {
-        if (!(HOUR == 24 || HOUR == -1)) {
-            HOUR += -1
+    if (main_node_ == 0) {
+        if (!(HOUR_ == 24 || HOUR_ == -1)) {
+            HOUR_ += -1
             ScrolText.showNumber(
-            HOUR,
+            HOUR_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             90
             )
-        } else if (HOUR == 24) {
-            HOUR = 0
+        } else if (HOUR_ == 24) {
+            HOUR_ = 0
             ScrolText.showNumber(
-            HOUR,
+            HOUR_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             90
             )
-        } else if (HOUR == -1) {
-            HOUR = 23
+        } else if (HOUR_ == -1) {
+            HOUR_ = 23
             ScrolText.showNumber(
-            HOUR,
+            HOUR_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             90
             )
         }
-    } else if (poj_pak == 1) {
-        if (!(MINUTE == 60 || MINUTE == -1)) {
-            MINUTE += -1
+    } else if (main_node_ == 1) {
+        if (!(MINUTE_ == 60 || MINUTE_ == -1)) {
+            MINUTE_ += -1
             ScrolText.showNumber(
-            MINUTE,
+            MINUTE_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
             )
-        } else if (MINUTE == 60) {
-            MINUTE = 0
+        } else if (MINUTE_ == 60) {
+            MINUTE_ = 0
             ScrolText.showNumber(
-            MINUTE,
+            MINUTE_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
             )
-        } else if (MINUTE == -1) {
-            MINUTE = 59
+        } else if (MINUTE_ == -1) {
+            MINUTE_ = 59
             ScrolText.showNumber(
-            MINUTE,
+            MINUTE_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
             )
         }
-    } else if (poj_pak == 2) {
+    } else if (main_node_ == 2) {
         ScrolText.showString(
-        "" + HOUR1 + ":" + MINUTE1,
+        "" + HOUR1_ + ":" + MINUTE1_,
         SCROLL_DIR.UP,
         SCROLL_ROTATE.SR_0,
         100
         )
-    } else if (poj_pak == 3) {
+    } else if (main_node_ == 3) {
         apps_ += -1
-    } else if (poj_pak == 4) {
+    } else if (main_node_ == 4) {
     	
     }
 })
 input.onButtonPressed(Button.AB, function () {
-    if (poj_pak == 0) {
-        HOUR1 = HOUR
-        poj_pak = 1
-    } else if (poj_pak == 1) {
-        MINUTE1 = MINUTE
-        poj_pak = 2
+    if (main_node_ == 0) {
+        HOUR1_ = HOUR_
+        main_node_ = 1
+    } else if (main_node_ == 1) {
+        MINUTE1_ = MINUTE_
+        main_node_ = 2
         basic.showLeds(`
             . . . . .
             . . . . .
@@ -78,10 +78,10 @@ input.onButtonPressed(Button.AB, function () {
             . . . . .
             . . . . .
             `)
-        start_everything = 1
-    } else if (poj_pak == 2) {
-        poj_pak = 3
-    } else if (poj_pak == 3) {
+        start_everything_ = 1
+    } else if (main_node_ == 2) {
+        main_node_ = 3
+    } else if (main_node_ == 3) {
         if (apps_ == 1) {
             bluetooth.uartWriteLine("app.sync.start;")
         } else if (apps_ == 2) {
@@ -120,19 +120,19 @@ input.onButtonPressed(Button.AB, function () {
                 . # # # . . . # . .
                 `).scrollImage(1, 200)
         } else if (apps_ == 6) {
-            beatbeat = 1
-            start_heartbeat = 1
+            beatbeat_ = 1
+            start_heartbeat_ = 1
             basic.pause(60000)
-            basic.showNumber(hearthbeatnumber)
-            bluetooth.uartWriteValue("hearthbeat", hearthbeatnumber)
+            basic.showNumber(hearthbeatnumber_)
+            bluetooth.uartWriteValue("hearthbeat", hearthbeatnumber_)
             for (let index = 0; index < 4; index++) {
                 basic.showIcon(IconNames.SmallHeart)
                 basic.showIcon(IconNames.Heart)
             }
-            start_heartbeat = 0
-            beatbeat = 0
+            start_heartbeat_ = 0
+            beatbeat_ = 0
         } else if (apps_ == 0) {
-            poj_pak = 2
+            main_node_ = 2
             basic.showLeds(`
                 . . . . .
                 . . . . .
@@ -144,59 +144,59 @@ input.onButtonPressed(Button.AB, function () {
     }
 })
 input.onButtonPressed(Button.B, function () {
-    if (poj_pak == 0) {
-        if (!(HOUR == 24 || HOUR == -1)) {
-            HOUR += 1
+    if (main_node_ == 0) {
+        if (!(HOUR_ == 24 || HOUR_ == -1)) {
+            HOUR_ += 1
             ScrolText.showNumber(
-            HOUR,
+            HOUR_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             90
             )
-        } else if (HOUR == 24) {
-            HOUR = 0
+        } else if (HOUR_ == 24) {
+            HOUR_ = 0
             ScrolText.showNumber(
-            HOUR,
+            HOUR_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             90
             )
-        } else if (HOUR == -1) {
-            HOUR = 23
+        } else if (HOUR_ == -1) {
+            HOUR_ = 23
             ScrolText.showNumber(
-            HOUR,
+            HOUR_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             90
             )
         }
-    } else if (poj_pak == 1) {
-        if (!(MINUTE == 60 || MINUTE == -1)) {
-            MINUTE += 1
+    } else if (main_node_ == 1) {
+        if (!(MINUTE_ == 60 || MINUTE_ == -1)) {
+            MINUTE_ += 1
             ScrolText.showNumber(
-            MINUTE,
+            MINUTE_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
             )
-        } else if (MINUTE == 60) {
-            MINUTE = 0
+        } else if (MINUTE_ == 60) {
+            MINUTE_ = 0
             ScrolText.showNumber(
-            MINUTE,
+            MINUTE_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
             )
-        } else if (MINUTE == -1) {
-            MINUTE = 59
+        } else if (MINUTE_ == -1) {
+            MINUTE_ = 59
             ScrolText.showNumber(
-            MINUTE,
+            MINUTE_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
             )
         }
-    } else if (poj_pak == 2) {
+    } else if (main_node_ == 2) {
         let kcal_ = 0
         basic.showString("" + input.temperature() + "C" + "|")
         basic.showLeds(`
@@ -215,7 +215,7 @@ input.onButtonPressed(Button.B, function () {
             . # . . #
             `)
         basic.showString("" + kcal_ + "|")
-    } else if (poj_pak == 3) {
+    } else if (main_node_ == 3) {
         apps_ += 1
     } else if (false) {
     	
@@ -228,11 +228,11 @@ input.onButtonPressed(Button.B, function () {
     }
 })
 input.onGesture(Gesture.Shake, function () {
-    if (start_everything == 1) {
+    if (start_everything_ == 1) {
         steps_ += 1
-        if (start_heartbeat == 1) {
-            hearthbeat = true
-            hearthbeatnumber += 1
+        if (start_heartbeat_ == 1) {
+            hearthbeat_ = true
+            hearthbeatnumber_ += 1
         }
     }
 })
@@ -253,27 +253,27 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     	
     }
 })
-let trace2: Image = null
-let trace1: Image = null
-let hearthbeat = false
-let hearthbeatnumber = 0
+let trace2_: Image = null
+let trace1_: Image = null
+let hearthbeat_ = false
+let hearthbeatnumber_ = 0
 let compass_ = 0
 let apps_ = 0
-let MINUTE1 = 0
-let HOUR1 = 0
-let MINUTE = 0
-let HOUR = 0
-let beatbeat = 0
-let start_heartbeat = 0
+let MINUTE1_ = 0
+let HOUR1_ = 0
+let MINUTE_ = 0
+let HOUR_ = 0
+let beatbeat_ = 0
+let start_heartbeat_ = 0
 let steps_ = 0
-let start_everything = 0
-let poj_pak = 0
+let start_everything_ = 0
+let main_node_ = 0
 bluetooth.startUartService()
-poj_pak = 0
-start_everything = 0
+main_node_ = 0
+start_everything_ = 0
 steps_ = 0
-start_heartbeat = 0
-beatbeat = 0
+start_heartbeat_ = 0
+beatbeat_ = 0
 basic.forever(function () {
     if (compass_ == 1 && apps_ == 2) {
         basic.showLeds(`
@@ -286,22 +286,22 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    if (hearthbeat) {
-        hearthbeat = false
-        trace1.scrollImage(1, 200)
-        trace2.scrollImage(1, 200)
+    if (hearthbeat_) {
+        hearthbeat_ = false
+        trace1_.scrollImage(1, 200)
+        trace2_.scrollImage(1, 200)
     }
 })
 basic.forever(function () {
-    if (start_everything == 1) {
-        if (!(HOUR1 == 24 || MINUTE1 == 60)) {
+    if (start_everything_ == 1) {
+        if (!(HOUR1_ == 24 || MINUTE1_ == 60)) {
             basic.pause(60000)
-            MINUTE1 += 1
-        } else if (MINUTE1 == 60) {
-            MINUTE1 = 0
-            HOUR1 += 1
-        } else if (HOUR1 == 24) {
-            HOUR1 = 0
+            MINUTE1_ += 1
+        } else if (MINUTE1_ == 60) {
+            MINUTE1_ = 0
+            HOUR1_ += 1
+        } else if (HOUR1_ == 24) {
+            HOUR1_ = 0
         }
     }
 })
@@ -346,7 +346,7 @@ basic.forever(function () {
             . . # # #
             . . # . #
             `)
-    } else if (apps_ == 6 && beatbeat == 0) {
+    } else if (apps_ == 6 && beatbeat_ == 0) {
         basic.showLeds(`
             . # . # .
             # # # # #
@@ -354,7 +354,7 @@ basic.forever(function () {
             . # # # .
             . . # . .
             `)
-    } else if (apps_ == 0 && poj_pak == 3) {
+    } else if (apps_ == 0 && main_node_ == 3) {
         basic.showLeds(`
             . . # . .
             . # . . .
@@ -451,7 +451,7 @@ basic.forever(function () {
     if (lift_to_wake_ == 1) {
         if (input.isGesture(Gesture.Shake) && input.isGesture(Gesture.LogoUp) && input.isGesture(Gesture.ScreenUp)) {
             ScrolText.showString(
-            "" + HOUR1 + ":" + MINUTE1,
+            "" + HOUR1_ + ":" + MINUTE1_,
             SCROLL_DIR.UP,
             SCROLL_ROTATE.SR_0,
             100
@@ -462,14 +462,14 @@ basic.forever(function () {
     }
 })
 basic.forever(function () {
-    trace1 = images.createImage(`
+    trace1_ = images.createImage(`
         # . . . .
         # . . . .
         # . . . .
         # # . . .
         # # # # #
         `)
-    trace2 = images.createImage(`
+    trace2_ = images.createImage(`
         . . . . .
         . . . . .
         . . . . .

@@ -1,31 +1,6 @@
+©2021 KOSA COMPUTING Inc.
+Available at https://github.com/kosaelectronics/Wearable-os-for-kosawatch
+#########################################################################
+You have permision to use this software on your KOSA:WATCH (Powered by micro:bit) but You dont have permision to use it on another
+devices powered by microbit or its other versions. KOSA COMPUTING is not responsible for any malfunction or error of the software.
 
-> Open this page at [https://kosaelectronics.github.io/wearable-os-for-kosawatch/](https://kosaelectronics.github.io/wearable-os-for-kosawatch/)
-
-## Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/kosaelectronics/wearable-os-for-kosawatch** and import
-
-## Edit this project ![Odznak stavu sestavení](https://github.com/kosaelectronics/wearable-os-for-kosawatch/workflows/MakeCode/badge.svg)
-
-To edit this repository in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/kosaelectronics/wearable-os-for-kosawatch** and click import
-
-## Náhled bloků
-
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
-
-![Vykreslený náhled bloků](https://github.com/kosaelectronics/wearable-os-for-kosawatch/raw/master/.github/makecode/blocks.png)
-
-#### Metadata (used for search, rendering)
-
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>

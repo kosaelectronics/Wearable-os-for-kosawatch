@@ -274,6 +274,7 @@ start_everything_ = 0
 steps_ = 0
 start_heartbeat_ = 0
 beatbeat_ = 0
+basic.showString("KOSA (c) 2021")
 basic.forever(function () {
     if (compass_ == 1 && apps_ == 2) {
         basic.showLeds(`
